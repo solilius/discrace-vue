@@ -16,10 +16,10 @@ import VueUnity from 'unity-webgl/vue';
 
 // Initialize Unity instance
 const unityInstance = new UnityWebGL({
-    loaderUrl: 'Build/WebGL.loader.js',
-    dataUrl: 'Build/WebGL.data.gz',
-    frameworkUrl: 'Build/WebGL.framework.js.gz',
-    codeUrl: 'Build/WebGL.wasm.gz',
+    loaderUrl: '/.proxy/Build/WebGL.loader.js',
+    dataUrl: '/.proxy/Build/WebGL.data.gz',
+    frameworkUrl: '/.proxy/Build/WebGL.framework.js.gz',
+    codeUrl: '/.proxy/Build/WebGL.wasm.gz',
 });
 
 unityInstance.on('device', () => {
