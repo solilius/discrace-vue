@@ -3,14 +3,16 @@ import UnityWebGL from 'unity-webgl';
 import VueUnity from 'unity-webgl/vue';
 
 // Fetch override for Discord but exclude services.api.unity.com
-if (window.location.hostname.includes("discordsays.com")) {
-    const originalFetch = window.fetch;
-    window.fetch = (input, init) => {
-        const url = typeof input === "string" ? input : input.url;
-
-        return originalFetch(".proxy/" + url, init); // Proxy everything else
-    };
-}
+// if (window.location.hostname.includes("discordsays.com")) {
+//     const originalFetch = window.fetch;
+//     window.fetch = (input, init) => {
+//         const url = typeof input === "string" ? input : input.url;
+//         if (url.includes("discordsays.com")) {
+//             return originalFetch(input, init); // Don't proxy Unity API requests
+//         }
+//         return originalFetch(".proxy/" + url, init); // Proxy everything else
+//     };
+// }
 
 // Initialize Unity instance
 const unityInstance = new UnityWebGL({
@@ -26,5 +28,5 @@ unityInstance.on('device', () => {
 </script>
 
 <template>
-  <VueUnity :unity="unityInstance"/>
+  <VueUnity :unity="unityInstance" width="1280" height="720"/>
 </template>
