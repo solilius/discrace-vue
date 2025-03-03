@@ -12,7 +12,7 @@ const unityInstance = new UnityWebGL({
 unityInstance.on('device', () => {
   console.log('Unity WebGL device ready');
 });
-console.log("tesxy");
+
 </script>
 
 <template>
