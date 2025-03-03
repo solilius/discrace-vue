@@ -18,6 +18,9 @@ const unityInstance = new UnityWebGL({
     dataUrl: '/Build/WebGL.data.gz',
     frameworkUrl: '/Build/WebGL.framework.js.gz',
     codeUrl: '/Build/WebGL.wasm.gz',
+    companyName: 'Alchemist Labs',
+    productName: 'Discrace',
+    productVersion: '0.1',
 });
 
 unityInstance.on('device', () => {
