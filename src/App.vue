@@ -6,6 +6,7 @@ if (window.location.hostname.includes("discordsays.com")) {
     const originalFetch = window.fetch;
     window.fetch = (input, init) => {
         const url = typeof input === "string" ? input : input.url;
+        console.log("Request", url);
         if (url.includes("WebGL.")) {
             return originalFetch(".proxy/" + url, init); // Proxy everything else
         }
