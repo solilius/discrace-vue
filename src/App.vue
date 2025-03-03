@@ -28,5 +28,5 @@ unityInstance.on('device', () => {
 </script>
 
 <template>
-  <VueUnity :unity="unityInstance" width="1280" height="720"/>
+  <VueUnity :unity="unityInstance"/>
 </template>
