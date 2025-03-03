@@ -7,9 +7,7 @@ if (window.location.hostname.includes("discordsays.com")) {
     const originalFetch = window.fetch;
     window.fetch = (input, init) => {
         const url = typeof input === "string" ? input : input.url;
-        if (url.includes("services.api.unity.com")) {
-            return originalFetch(input, init); // Don't proxy Unity API requests
-        }
+
         return originalFetch(".proxy/" + url, init); // Proxy everything else
     };
 }
