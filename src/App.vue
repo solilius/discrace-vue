@@ -7,12 +7,7 @@ if (window.location.hostname.includes("discordsays.com")) {
     window.fetch = (input, init) => {
         const url = typeof input === "string" ? input : input.url;
 
-        return originalFetch(".proxy" + url, init);
-
-        if (url.includes("WebGL.")) {
-            return originalFetch(".proxy" + url, init);
-        }
-        return originalFetch(url, init); 
+        return originalFetch(".proxy/" + url, init);
     };
 }
 
