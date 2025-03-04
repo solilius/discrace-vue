@@ -18,7 +18,10 @@ if (window.location.hostname.includes("discordsays.com")) {
                 return originalFetch("/unity/relay/regions", init);
                 
             case "https://relay-allocations.services.api.unity.com/v1/allocate":
-                return originalFetch("/unity/relay/allocate", init);   
+                return originalFetch("/unity/relay/allocate", init);  
+            
+            case "https://relay-allocations.services.api.unity.com/v1/joincode":
+                return originalFetch("/unity/relay/joincode", init); 
             default:
                 return originalFetch(input, init);
         }
