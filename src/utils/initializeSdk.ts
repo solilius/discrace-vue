@@ -18,7 +18,7 @@ export async function initializeSdk(): Promise<DiscordSDK> {
     });
 
     console.log("discordSdk code", code);
-    const response = await fetch("/api/token", {
+    const response = await fetch('/.proxy/api/token', {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
