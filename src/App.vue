@@ -6,16 +6,12 @@ if (window.location.hostname.includes("discordsays.com")) {
     const originalFetch = window.fetch;
     window.fetch = (input, init) => {
         const url = typeof input === "string" ? input : input.url;
-        
-        switch (url) {
-            case "https://player-auth.services.api.unity.com/v1/authentication/session-token":
-                return originalFetch("/unity/auth/session-token", init);
 
-            case "https://player-auth.services.api.unity.com/v1/authentication/anonymous":
-                return originalFetch("/unity/auth/anonymous", init);
-            default:
-                return originalFetch(input, init);
+        if (url.includes("https://player-auth.services.api.unity.com/v1/authentication")) {
+            return originalFetch("/unity/auth/", init);
         }
+
+        return originalFetch(input, init);
 
     };
 }
