@@ -30,7 +30,7 @@ if (window.location.hostname.includes("discordsays.com")) {
     const OriginalWebSocket = window.WebSocket;
     window.WebSocket = function (url, protocols) {
         if (url.includes("relay.cloud.unity3d.com")) {
-            return new OriginalWebSocket('unity/relay/socket', protocols);
+            return new OriginalWebSocket('/unity/relay/socket', protocols);
         }
         return new OriginalWebSocket(url, protocols);
     };
