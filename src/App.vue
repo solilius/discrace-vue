@@ -9,22 +9,22 @@ if (window.location.hostname.includes("discordsays.com")) {
 
         switch (url) {
             case "https://player-auth.services.api.unity.com/v1/authentication/session-token":
-                return originalFetch("/unity/auth/session-token", init);
+                return originalFetch(patchUrl("/unity/auth/session-token"), init);
 
             case "https://player-auth.services.api.unity.com/v1/authentication/anonymous":
-                return originalFetch("/unity/auth/anonymous", init);
+                return originalFetch(patchUrl("/unity/auth/anonymous"), init);
 
             case "https://relay-allocations.services.api.unity.com/v1/regions":
-                return originalFetch("/unity/relay/regions", init);
+                return originalFetch(patchUrl("/unity/relay/regions"), init);
 
             case "https://relay-allocations.services.api.unity.com/v1/allocate":
-                return originalFetch("/unity/relay/allocate", init);
+                return originalFetch(patchUrl("/unity/relay/allocate"), init);
 
             case "https://relay-allocations.services.api.unity.com/v1/joincode":
-                return originalFetch("/unity/relay/joincode", init);
+                return originalFetch(patchUrl("/unity/relay/joincode"), init);
 
             case "https://relay-allocations.services.api.unity.com/v1/join":
-                return originalFetch("/unity/relay/join", init);
+                return originalFetch(patchUrl("/unity/relay/join"), init);
             default:
                 return originalFetch(patchUrl(input), init);
         }
