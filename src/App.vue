@@ -6,7 +6,7 @@ if (!window.location.hostname.includes("discordsays.com")) {
     const originalFetch = window.fetch;
     window.fetch = (input, init) => {
         const url = typeof input === "string" ? input : input.url;
-        if (url === "https://player-auth.services.api.unity.com/v1/authentication/anonymous") {
+        if (url === "https://player-auth.services.api.unity.com/v1/authentication/session-token") {
             return originalFetch("/unity/auth" , init);
         }
         return originalFetch(input, init);
