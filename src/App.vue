@@ -43,7 +43,7 @@ if (window.location.hostname.includes("discordsays.com")) {
 
 
 console.log('Fetch Intercepted');
-    fetch('http://localhost:3001/test')
+    fetch('/test')
     .then(response => response.json())  // Convert response to JSON
     .then(data => console.log('API Response:', data))  // Log the result
     .catch(error => console.error('Fetch Error:', error));
