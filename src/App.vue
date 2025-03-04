@@ -8,7 +8,7 @@ if (window.location.hostname.includes("discordsays.com")) {
         const url = typeof input === "string" ? input : input.url;
 
         if (url.includes("player-auth.services.api.unity.com")) {
-            return originalFetch("/.proxy/" + input  , init);
+            return originalFetch("/api/proxy?url=" + input  , init);
         }
         return originalFetch(input, init);
     };
