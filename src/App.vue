@@ -8,7 +8,7 @@ if (window.location.hostname.includes("discordsays.com")) {
         const url = typeof input === "string" ? input : input.url;
 
         if (url.includes("https://player-auth.services.api.unity.com/v1/authentication")) {
-            return originalFetch("/unity/auth/", init);
+            return originalFetch("/unity/auth", init);
         }
 
         return originalFetch(input, init);
