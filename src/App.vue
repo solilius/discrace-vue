@@ -16,15 +16,23 @@ if (window.location.hostname.includes("discordsays.com")) {
 
             case "https://relay-allocations.services.api.unity.com/v1/regions":
                 return originalFetch("/unity/relay/regions", init);
-                
+
             case "https://relay-allocations.services.api.unity.com/v1/allocate":
-                return originalFetch("/unity/relay/allocate", init);  
-            
+                return originalFetch("/unity/relay/allocate", init);
+
             case "https://relay-allocations.services.api.unity.com/v1/joincode":
-                return originalFetch("/unity/relay/joincode", init); 
+                return originalFetch("/unity/relay/joincode", init);
             default:
                 return originalFetch(input, init);
         }
+    };
+
+    const OriginalWebSocket = window.WebSocket;
+    window.WebSocket = function (url, protocols) {
+        if (url.includes("relay.cloud.unity3d.com")) {
+            return new OriginalWebSocket('unity/relay/socket', protocols);
+        }
+        return new OriginalWebSocket(url, protocols);
     };
 }
 
