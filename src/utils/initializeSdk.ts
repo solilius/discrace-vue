@@ -9,6 +9,7 @@ export async function initializeSdk(): Promise<DiscordSDK> {
 
     const discordSdk = new DiscordSDK(CLIENT_ID);
     await discordSdk.ready();
+
     const { code } = await discordSdk.commands.authorize({
         client_id: CLIENT_ID,
         response_type: "code",
@@ -18,16 +19,17 @@ export async function initializeSdk(): Promise<DiscordSDK> {
     });
 
     console.log("discordSdk code", code);
-    const response = await fetch('/.proxy/api/token', {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ code }),
-    });
-    const { access_token } = await response.json();
 
-    await discordSdk.commands.authenticate({ access_token });
+    // const response = await fetch('/api/token', {
+    //     method: "POST",
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ code }),
+    // });
+    // const { access_token } = await response.json();
+
+    // await discordSdk.commands.authenticate({ access_token });
 
     return discordSdk;
 }
