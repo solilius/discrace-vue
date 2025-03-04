@@ -41,6 +41,14 @@ if (window.location.hostname.includes("discordsays.com")) {
     };
 }
 
+
+console.log('Fetch Intercepted');
+    fetch('http://localhost:3001/test')
+    .then(response => response.json())  // Convert response to JSON
+    .then(data => console.log('API Response:', data))  // Log the result
+    .catch(error => console.error('Fetch Error:', error));
+
+
 // Initialize Unity instance
 const unityInstance = new UnityWebGL({
     loaderUrl: '/Build/WebGL.loader.js',
@@ -52,9 +60,14 @@ const unityInstance = new UnityWebGL({
     productVersion: '0.1',
 });
 
-unityInstance.on('device', () => {
-    console.log('Unity WebGL device ready');
+unityInstance.addUnityListener('gameStart', (msg) => {
+  alert(msg);
+  console.log('gameStart : ', msg);
 });
+
+unityInstance.sendMessage('DiscordWebhooks', 'Test', JSON.stringify({ message: 'Hello World' }));
+
+
 </script>
 
 <template>
