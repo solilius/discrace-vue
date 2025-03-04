@@ -33,7 +33,9 @@ if (window.location.hostname.includes("discordsays.com")) {
     const OriginalWebSocket = window.WebSocket;
     window.WebSocket = function (url, protocols) {
         if (url.includes("relay.cloud.unity3d.com")) {
+        
             const subdomain = url.split(".relay.cloud.unity3d.com")[0].replace("wss://", "");
+            console.log(`url: ${url}, subdomain: ${subdomain}`);
             return new OriginalWebSocket(`/unity/relay/socket/${subdomain}`, protocols);
         }
         return new OriginalWebSocket(url, protocols);
