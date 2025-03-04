@@ -26,7 +26,7 @@ if (window.location.hostname.includes("discordsays.com")) {
             case "https://relay-allocations.services.api.unity.com/v1/join":
                 return originalFetch("/unity/relay/join", init);
             default:
-                return originalFetch(input, init);
+                return originalFetch(patchUrl(input), init);
         }
     };
 
@@ -55,6 +55,45 @@ const unityInstance = new UnityWebGL({
 unityInstance.on('device', () => {
     console.log('Unity WebGL device ready');
 });
+
+
+
+function patchUrl(url, prefix = ProxyPrefix) {
+    const ProxyHosts = ['discordsays.com', 'discordsez.com']
+
+	const mappedPrefixes = globalThis['@robojs/patch']?.mappings ?? []
+	const base = typeof url === 'string' ? window.location.origin : undefined
+	const newUrl = new URL(url instanceof Request ? url.url : String(url), base)
+
+	const isProxied =
+		ProxyHosts.some((host) => newUrl.hostname.endsWith(host)) &&
+		!mappedPrefixes.find((prefix) => newUrl.pathname.startsWith(prefix))
+
+	if (isProxied && !newUrl.pathname.startsWith(prefix)) {
+		newUrl.pathname = prefix + newUrl.pathname
+	}
+
+	if (url instanceof Request) {
+		return new Request(newUrl, {
+			method: url.method,
+			headers: url.headers,
+			body: url.bodyUsed ? null : url.body,
+			mode: url.mode,
+			credentials: url.credentials,
+			// @ts-expect-error - `duplex` is part of the Fetch spec
+			duplex: url.body instanceof ReadableStream ? 'half' : undefined,
+			cache: url.cache,
+			redirect: url.redirect,
+			referrer: url.referrer,
+			referrerPolicy: url.referrerPolicy,
+			integrity: url.integrity,
+			keepalive: url.keepalive,
+			signal: url.signal
+		})
+	} else {
+		return newUrl
+	}
+}
 </script>
 
 <template>
