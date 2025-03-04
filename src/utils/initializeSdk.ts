@@ -18,16 +18,16 @@ export async function initializeSdk(): Promise<DiscordSDK> {
     });
 
     console.log("discordSdk code", code);
-    // const response = await fetch("/discord/token", {
-    //     method: "POST",
-    //     headers: {
-    //         "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ code }),
-    // });
-    // const { access_token } = await response.json();
+    const response = await fetch("/discord/token", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ code }),
+    });
+    const { access_token } = await response.json();
 
-    // await discordSdk.commands.authenticate({ access_token });
+    await discordSdk.commands.authenticate({ access_token });
 
     return discordSdk;
 }
