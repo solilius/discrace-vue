@@ -2,14 +2,14 @@
 import UnityWebGL from 'unity-webgl';
 import VueUnity from 'unity-webgl/vue';
 
-if (window.location.hostname.includes("discordsays.com")) {
-    const originalFetch = window.fetch;
-    window.fetch = (input, init) => {
-        const url = typeof input === "string" ? input : input.url;
+// if (window.location.hostname.includes("discordsays.com")) {
+//     const originalFetch = window.fetch;
+//     window.fetch = (input, init) => {
+//         const url = typeof input === "string" ? input : input.url;
 
-        return originalFetch(".proxy/" + url, init);
-    };
-}
+//         return originalFetch(".proxy/" + url, init);
+//     };
+// }
 
 // Initialize Unity instance
 const unityInstance = new UnityWebGL({
