@@ -22,6 +22,9 @@ if (window.location.hostname.includes("discordsays.com")) {
 
             case "https://relay-allocations.services.api.unity.com/v1/joincode":
                 return originalFetch("/unity/relay/joincode", init);
+
+            case "https://relay-allocations.services.api.unity.com/v1/join":
+                return originalFetch("/unity/relay/join", init);
             default:
                 return originalFetch(input, init);
         }
