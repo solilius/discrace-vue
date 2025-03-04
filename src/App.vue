@@ -13,6 +13,10 @@ if (window.location.hostname.includes("discordsays.com")) {
 
             case "https://player-auth.services.api.unity.com/v1/authentication/anonymous":
                 return originalFetch("/unity/auth/anonymous", init);
+            case "https://relay-allocations.services.api.unity.com/v1/regions":
+                return originalFetch("/unity/relay/regions", init);
+            case "relay-allocations.services.api.unity.com/v1/allocate":
+                return originalFetch("/unity/relay/allocate", init);   
             default:
                 return originalFetch(input, init);
         }
