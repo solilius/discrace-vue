@@ -4,10 +4,7 @@ import { DiscordProxy } from '@robojs/patch'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [ 
-    vue(), 
-    // DiscordProxy.Vite() 
-  ],
+  plugins: [ vue(), DiscordProxy.Vite() ],
   server: {
     allowedHosts: ['handheld-doll-riding-pros.trycloudflare.com'],
     cors: true,
