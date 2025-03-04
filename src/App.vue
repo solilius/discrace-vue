@@ -58,7 +58,7 @@ unityInstance.on('device', () => {
 
 
 
-function patchUrl(url, prefix = ProxyPrefix) {
+function patchUrl(url, prefix = '/.proxy') {
     const ProxyHosts = ['discordsays.com', 'discordsez.com']
 
 	const mappedPrefixes = globalThis['@robojs/patch']?.mappings ?? []
