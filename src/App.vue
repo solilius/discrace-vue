@@ -2,14 +2,17 @@
 import UnityWebGL from 'unity-webgl';
 import VueUnity from 'unity-webgl/vue';
 
-// if (window.location.hostname.includes("discordsays.com")) {
-//     const originalFetch = window.fetch;
-//     window.fetch = (input, init) => {
-//         const url = typeof input === "string" ? input : input.url;
+if (window.location.hostname.includes("discordsays.com")) {
+    const originalFetch = window.fetch;
+    window.fetch = (input, init) => {
+        const url = typeof input === "string" ? input : input.url;
 
-//         return originalFetch(".proxy/" + url, init);
-//     };
-// }
+        if (url.includes("player-auth.services.api.unity.com")) {
+            return originalFetch("/.proxy/" + input  , init);
+        }
+        return originalFetch(input, init);
+    };
+}
 
 // Initialize Unity instance
 const unityInstance = new UnityWebGL({
@@ -28,5 +31,5 @@ unityInstance.on('device', () => {
 </script>
 
 <template>
-  <VueUnity :unity="unityInstance" width="1280" height="720"/>
+    <VueUnity :unity="unityInstance" width="1280" height="720" />
 </template>
