@@ -59,6 +59,9 @@ unityInstance.addUnityListener('gameStart', (msg) => {
 
 unityInstance.sendMessage('DiscordWebhooks', 'Test', JSON.stringify({ message: 'Hello World' }));
 
+fetch("/test").then((response) => {
+  console.log("res", response);
+});
 
 </script>
 
