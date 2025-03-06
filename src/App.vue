@@ -59,19 +59,29 @@ unityInstance.addUnityListener('gameStart', (msg) => {
 
 unityInstance.sendMessage('DiscordWebhooks', 'Test', JSON.stringify({ message: 'Hello World' }));
 
-fetch('/test') // Replace with your API URL
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log(data); // Handle the JSON data
-  })
-  .catch(error => {
-    console.error('Error fetching data:', error);
-  });
+fetch('/test/api')
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.error(err));
+
+const ws = new WebSocket('/test/socket');
+
+ws.onopen = () => {
+    console.log('Connected to WebSocket server');
+    ws.send('Hello, Server!');
+};
+
+ws.onmessage = (event) => {
+    console.log('Received:', event.data);
+};
+
+ws.onclose = () => {
+    console.log('Connection closed');
+};
+
+ws.onerror = (error) => {
+    console.error('WebSocket Error:', error);
+};
 
 </script>
 
