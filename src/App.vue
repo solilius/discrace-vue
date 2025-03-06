@@ -59,9 +59,19 @@ unityInstance.addUnityListener('gameStart', (msg) => {
 
 unityInstance.sendMessage('DiscordWebhooks', 'Test', JSON.stringify({ message: 'Hello World' }));
 
-fetch("/test").then((response) => {
-  console.log("res", response);
-});
+fetch('/test') // Replace with your API URL
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log(data); // Handle the JSON data
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+  });
 
 </script>
 
